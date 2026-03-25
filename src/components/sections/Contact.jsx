@@ -168,7 +168,7 @@ export default function Contact() {
                         <label className={`block text-xs font-semibold uppercase tracking-wide mb-1.5 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Name *</label>
                         <input
                           className={inputCls}
-                          placeholder="John Doe"
+                          placeholder="Your Name"
                           value={form.name}
                           onChange={e => { setForm(f => ({ ...f, name: e.target.value })); setErrors(er => ({ ...er, name: '' })) }}
                         />
@@ -179,7 +179,7 @@ export default function Contact() {
                         <input
                           type="email"
                           className={inputCls}
-                          placeholder="john@example.com"
+                          placeholder="Your Email Address"
                           value={form.email}
                           onChange={e => { setForm(f => ({ ...f, email: e.target.value })); setErrors(er => ({ ...er, email: '' })) }}
                         />
