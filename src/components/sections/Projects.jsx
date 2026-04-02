@@ -274,7 +274,7 @@ export default function Projects() {
           viewport={{ once: true }}
           className="mt-12 text-center"
         >
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+          <a href="https://github.com/hardatt" target="_blank" rel="noopener noreferrer"
             className={`inline-flex items-center gap-2 px-6 py-3 border-2 border-teal-500/30 text-teal-400 font-semibold rounded-xl hover:border-teal-400 transition-all duration-300 ${isDark ? 'hover:bg-teal-500/10' : 'hover:bg-teal-50'}`}>
             <FaGithub size={18} /> View All on GitHub
           </a>
