@@ -16,9 +16,9 @@ import { useTheme } from '../../context/ThemeContext'
 const groups = [
   {
     label: 'Frontend',
-    gradient: 'from-violet-600 to-purple-600',
-    border: 'border-violet-500/20',
-    bg: 'bg-violet-500/8',
+    gradient: 'from-teal-500 to-sky-500',
+    border: 'border-teal-500/20',
+    bg: 'bg-teal-500/8',
     items: [
       { name: 'React.js', Icon: SiReact, color: '#61DAFB' },
       { name: 'JavaScript (ES6+)', Icon: SiJavascript, color: '#F7DF1E' },
@@ -70,12 +70,12 @@ export default function Skills() {
   const isDark = theme === 'dark'
 
   return (
-    <section id="skills" className={`section-pad relative overflow-hidden ${isDark ? 'bg-[#0d1326]' : 'bg-white'}`}>
-      <div className="absolute top-0 left-1/3 w-96 h-96 bg-blue-600/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-violet-600/5 rounded-full blur-[80px] pointer-events-none" />
+    <section id="skills" className={`section-pad relative overflow-hidden ${isDark ? 'bg-[#071525]' : 'bg-white'}`}>
+      <div className="absolute top-0 left-1/3 w-96 h-96 bg-teal-600/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-sky-600/5 rounded-full blur-[80px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle badge="Tech Stack" title="Skills &" highlight="Technologies" subtitle="A curated toolkit of technologies I use to build production-grade applications." />
+        <SectionTitle badge="Tech Stack" title="Skills &" highlight="Technologies" subtitle="The tools I reach for. Not a collector — just what I use every week." />
 
         <div className="space-y-14">
           {groups.map((g, gi) => (
@@ -126,12 +126,12 @@ export default function Skills() {
           transition={{ delay: 0.4 }}
           className="mt-16 overflow-hidden relative py-4"
         >
-          <div className={`absolute left-0 inset-y-0 w-20 z-10 bg-gradient-to-r ${isDark ? 'from-[#0d1326]' : 'from-white'} to-transparent`} />
-          <div className={`absolute right-0 inset-y-0 w-20 z-10 bg-gradient-to-l ${isDark ? 'from-[#0d1326]' : 'from-white'} to-transparent`} />
+          <div className={`absolute left-0 inset-y-0 w-20 z-10 bg-gradient-to-r ${isDark ? 'from-[#071525]' : 'from-white'} to-transparent`} />
+          <div className={`absolute right-0 inset-y-0 w-20 z-10 bg-gradient-to-l ${isDark ? 'from-[#071525]' : 'from-white'} to-transparent`} />
           <div className="flex animate-marquee whitespace-nowrap">
             {[...techStack, ...techStack].map((t, i) => (
               <span key={i} className={`mx-5 text-sm font-medium ${isDark ? 'text-gray-600' : 'text-gray-300'}`}>
-                {t.name} <span className="text-violet-500/40 mx-3">◆</span>
+                {t.name} <span className="text-teal-500/40 mx-3">◆</span>
               </span>
             ))}
           </div>

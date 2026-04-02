@@ -1,5 +1,6 @@
 import { ThemeProvider } from './context/ThemeContext'
 import LoadingScreen from './components/LoadingScreen'
+import Cursor from './components/Cursor'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Hero from './components/sections/Hero'
@@ -14,6 +15,7 @@ import Contact from './components/sections/Contact'
 export default function App() {
   return (
     <ThemeProvider>
+      <Cursor />
       <LoadingScreen />
       <div className="min-h-screen">
         <Navbar />

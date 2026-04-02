@@ -1,49 +1,35 @@
 import { motion } from 'framer-motion'
+import { useTheme } from '../../context/ThemeContext'
 
 export default function SectionTitle({ badge, title, highlight, subtitle, align = 'center' }) {
-  const parts = highlight ? title.split(highlight) : null
+  const { theme } = useTheme()
+  const isDark = theme === 'dark'
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className={`mb-16 ${align === 'center' ? 'text-center' : 'text-left'}`}
     >
       {badge && (
-        <motion.span
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest mb-4
-            bg-violet-500/10 text-violet-400 border border-violet-500/20
-            ${align === 'center' ? 'mx-auto' : ''}`}
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
-          {badge}
-        </motion.span>
+        <p className="text-[10px] uppercase tracking-[0.25em] font-bold mb-4 text-label">
+          — {badge}
+        </p>
       )}
 
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-poppins font-bold text-gray-900 dark:text-white leading-tight">
-        {parts ? (
-          <>{parts[0]}<span className="gradient-text"> {highlight}</span>{parts[1]}</>
+      <h2 className={`text-3xl md:text-4xl lg:text-[2.6rem] font-poppins font-bold leading-tight ${isDark ? 'text-white' : 'text-gray-900'}`}>
+        {highlight ? (
+          <>{title} <span className="text-accent">{highlight}</span></>
         ) : title}
       </h2>
 
       {subtitle && (
-        <p className={`mt-4 text-base md:text-lg text-gray-500 dark:text-gray-400 max-w-2xl leading-relaxed ${align === 'center' ? 'mx-auto' : ''}`}>
+        <p className={`mt-4 text-[0.94rem] leading-relaxed max-w-lg ${align === 'center' ? 'mx-auto' : ''} ${isDark ? 'text-slate-500' : 'text-gray-400'}`}>
           {subtitle}
         </p>
       )}
-
-      <motion.div
-        initial={{ scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.3 }}
-        className={`mt-6 h-1 w-16 rounded-full bg-gradient-to-r from-violet-600 to-blue-600 origin-left ${align === 'center' ? 'mx-auto' : ''}`}
-      />
     </motion.div>
   )
 }

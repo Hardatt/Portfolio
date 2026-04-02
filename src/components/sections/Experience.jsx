@@ -17,15 +17,15 @@ export default function Experience() {
   const isDark = theme === 'dark'
 
   return (
-    <section id="experience" className={`section-pad relative overflow-hidden ${isDark ? 'bg-[#0a0f1e]' : 'bg-gray-50'}`}>
-      <div className="absolute top-1/3 right-0 w-80 h-80 bg-violet-600/5 rounded-full blur-[120px] pointer-events-none" />
+    <section id="experience" className={`section-pad relative overflow-hidden ${isDark ? 'bg-[#030d1e]' : 'bg-gray-50'}`}>
+      <div className="absolute top-1/3 right-0 w-80 h-80 bg-teal-600/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle badge="My Journey" title="Experience &" highlight="Education" subtitle="A timeline of my professional experience and academic background." />
+        <SectionTitle badge="My Journey" title="Experience &" highlight="Education" subtitle="Where I've worked and what I learned by actually shipping things." />
 
         <div className="relative">
           {/* Vertical line */}
-          <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-violet-500/60 via-blue-500/40 to-transparent hidden md:block" />
+          <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-teal-500/60 via-sky-500/40 to-transparent hidden md:block" />
 
           <div className="space-y-8">
             {experiences.map((exp, i) => (
@@ -59,7 +59,7 @@ function TimelineCard({ exp, index, isDark }) {
           animate={inView ? { scale: 1 } : {}}
           transition={{ type: 'spring', bounce: 0.5, delay: index * 0.1 + 0.2 }}
           className="w-16 h-16 rounded-2xl border-2 flex items-center justify-center relative z-10"
-          style={{ borderColor: c.dot, backgroundColor: isDark ? '#0a0f1e' : '#fafafa' }}
+          style={{ borderColor: c.dot, backgroundColor: isDark ? '#030d1e' : '#fafafa' }}
         >
           <Icon size={24} style={{ color: c.dot }} />
         </motion.div>
@@ -70,8 +70,8 @@ function TimelineCard({ exp, index, isDark }) {
         whileHover={{ y: -3 }}
         className={`flex-1 rounded-2xl p-5 md:p-6 border transition-all duration-300 ${
           isDark
-            ? `bg-[#111827] border-white/8 hover:${c.border}`
-            : `bg-white border-gray-200 hover:border-violet-300`
+            ? `bg-[#0a1a2e] border-white/[0.07] hover:${c.border}`
+            : `bg-white border-gray-200 hover:border-teal-300`
         } hover:shadow-lg`}
       >
         <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
@@ -92,7 +92,7 @@ function TimelineCard({ exp, index, isDark }) {
         <div className="flex flex-wrap gap-2">
           {exp.tech.map(t => (
             <span key={t} className={`px-2.5 py-1 text-xs rounded-lg border font-medium ${
-              isDark ? 'bg-white/4 text-gray-400 border-white/8' : 'bg-gray-100 text-gray-600 border-gray-200'
+              isDark ? 'bg-white/4 text-gray-400 border-white/[0.07]' : 'bg-gray-100 text-gray-600 border-gray-200'
             }`}>{t}</span>
           ))}
         </div>

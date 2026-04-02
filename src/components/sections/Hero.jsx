@@ -1,150 +1,216 @@
-import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { HiArrowRight, HiDownload, HiChevronDown } from 'react-icons/hi'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { useTypingEffect } from '../../hooks/useTypingEffect'
 import { personalInfo, typingTexts } from '../../data/data'
 
-const PARTICLES = Array.from({ length: 28 }, (_, i) => ({
-  id: i,
-  x: Math.random() * 100,
-  y: Math.random() * 100,
-  size: Math.random() * 3 + 1,
-  dur: Math.random() * 10 + 12,
-  delay: Math.random() * 6,
-}))
+// Terminal lines — renders one by one, like a real terminal
+const TERM = [
+  { id: 0, delay: 700,  jsx: (
+    <p><span className="text-slate-600">$</span>{' '}
+      <span className="text-teal-400">curl</span>{' '}
+      <span className="text-slate-300">-s api.hardatt.dev</span>
+      <span className="text-sky-400">/health</span>
+    </p>
+  )},
+  { id: 1, delay: 1400, jsx: <p className="text-slate-500">{'{'}</p> },
+  { id: 2, delay: 1750, jsx: (
+    <p className="pl-4">
+      <span className="text-slate-500">"status":{' '}</span>
+      <span className="text-teal-400">"operational"</span>
+      <span className="text-slate-600">,</span>
+    </p>
+  )},
+  { id: 3, delay: 2050, jsx: (
+    <p className="pl-4">
+      <span className="text-slate-500">"latency":{' '}</span>
+      <span className="text-sky-400">"11ms"</span>
+      <span className="text-slate-600">,</span>
+    </p>
+  )},
+  { id: 4, delay: 2350, jsx: (
+    <p className="pl-4">
+      <span className="text-slate-500">"uptime":{' '}</span>
+      <span className="text-green-400">"99.98%"</span>
+      <span className="text-slate-600">,</span>
+    </p>
+  )},
+  { id: 5, delay: 2650, jsx: (
+    <p className="pl-4">
+      <span className="text-slate-500">"requests_today":{' '}</span>
+      <span className="text-orange-400">"2.4M"</span>
+    </p>
+  )},
+  { id: 6, delay: 2900, jsx: <p className="text-slate-500">{'}'}</p> },
+  { id: 7, delay: 3350, jsx: (
+    <p className="mt-1">
+      <span className="text-green-400 font-semibold">✓</span>
+      <span className="text-slate-300"> 200 OK</span>
+      <span className="text-slate-600"> · </span>
+      <span className="text-sky-400">11ms</span>
+      <span className="text-slate-600"> · </span>
+      <span className="text-slate-500">Node.js / Express</span>
+    </p>
+  )},
+]
 
 export default function Hero() {
   const typed = useTypingEffect(typingTexts)
+  const [shown, setShown] = useState([])
+
+  useEffect(() => {
+    const timers = TERM.map(line =>
+      setTimeout(() => setShown(prev => [...prev, line.id]), line.delay)
+    )
+    return () => timers.forEach(clearTimeout)
+  }, [])
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#0a0f1e]">
-      {/* Mesh gradient */}
-      <div className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse at 15% 50%, rgba(124,58,237,0.35) 0%, transparent 55%), radial-gradient(ellipse at 85% 20%, rgba(37,99,235,0.35) 0%, transparent 55%), radial-gradient(ellipse at 50% 85%, rgba(6,182,212,0.18) 0%, transparent 50%)' }}
-      />
-      {/* Grid */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.035]"
-        style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.1) 1px,transparent 1px)', backgroundSize: '60px 60px' }}
+    <section
+      id="hero"
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#030d1e]"
+    >
+      {/* Dot grid */}
+      <div
+        className="absolute inset-0 pointer-events-none dot-grid"
+        style={{
+          opacity: 0.45,
+          WebkitMaskImage: 'radial-gradient(ellipse 90% 85% at 50% 50%, black 20%, transparent 100%)',
+          maskImage: 'radial-gradient(ellipse 90% 85% at 50% 50%, black 20%, transparent 100%)',
+        }}
       />
 
-      {/* Floating particles */}
-      {PARTICLES.map(p => (
-        <motion.div
-          key={p.id}
-          className="absolute rounded-full bg-violet-400/25 pointer-events-none"
-          style={{ left: `${p.x}%`, top: `${p.y}%`, width: p.size, height: p.size }}
-          animate={{ y: [0, -35, 0], x: [0, (Math.random() - 0.5) * 18, 0], opacity: [0.1, 0.45, 0.1] }}
-          transition={{ duration: p.dur, delay: p.delay, repeat: Infinity, ease: 'easeInOut' }}
-        />
-      ))}
-
-      {/* Orbs */}
+      {/* Teal glow — top right */}
       <motion.div
-        animate={{ scale: [1, 1.25, 1], opacity: [0.13, 0.22, 0.13] }}
-        transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute top-16 right-0 w-[580px] h-[580px] bg-violet-600 rounded-full blur-[160px] pointer-events-none"
-      />
-      <motion.div
-        animate={{ scale: [1.2, 1, 1.2], opacity: [0.1, 0.18, 0.1] }}
-        transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-        className="absolute -bottom-10 -left-10 w-[480px] h-[480px] bg-blue-600 rounded-full blur-[150px] pointer-events-none"
+        animate={{ scale: [1, 1.18, 1], opacity: [0.14, 0.24, 0.14] }}
+        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute -top-16 -right-16 w-[600px] h-[600px] rounded-full blur-[200px] pointer-events-none"
+        style={{ background: '#0d9488' }}
       />
 
-      {/* Main content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 grid lg:grid-cols-2 gap-12 items-center w-full">
-        {/* Left */}
+      {/* Indigo glow — bottom left */}
+      <motion.div
+        animate={{ scale: [1.12, 1, 1.12], opacity: [0.07, 0.13, 0.07] }}
+        transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
+        className="absolute -bottom-24 -left-24 w-[500px] h-[500px] rounded-full blur-[190px] pointer-events-none"
+        style={{ background: '#4338ca' }}
+      />
+
+      {/* ── Main grid ── */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid lg:grid-cols-[1fr_1.05fr] gap-10 lg:gap-16 items-center">
+
+        {/* ── LEFT ── */}
         <div>
-          {/* Badge */}
+
+          {/* Live status pill */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-300 mb-6"
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-teal-500/20 bg-teal-500/5 text-[0.82rem] text-slate-400 mb-9"
           >
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            Available for freelance &amp; full-time
+            <span className="relative flex h-2 w-2 flex-shrink-0">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-60" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-400" />
+            </span>
+            Currently at Globiva · Open to new roles
           </motion.div>
 
-          {/* Name */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.7 }}
-            className="text-5xl sm:text-6xl lg:text-7xl font-poppins font-bold text-white leading-tight mb-4"
-          >
-            Hi, I'm{' '}
-            <span className="gradient-text">{personalInfo.firstName}</span>
-            <br />
-            <span className="text-gray-400 text-4xl sm:text-5xl lg:text-6xl">{personalInfo.lastName}</span>
-          </motion.h1>
+          {/* Name — clip reveal */}
+          <div className="overflow-hidden mb-1">
+            <motion.div
+              initial={{ y: '110%' }}
+              animate={{ y: '0%' }}
+              transition={{ duration: 0.85, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <h1 className="font-poppins font-extrabold tracking-tight leading-[1.02]">
+                <span className="block text-slate-500 text-2xl sm:text-3xl font-medium tracking-widest mb-1">
+                  I'M
+                </span>
+                <span
+                  className="block text-[4.5rem] sm:text-[5.5rem] lg:text-[6.5rem] gradient-text"
+                  style={{ lineHeight: 1 }}
+                >
+                  HARDATT
+                </span>
+              </h1>
+            </motion.div>
+          </div>
 
-          {/* Typed title */}
+          {/* Role typing */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35 }}
-            className="text-2xl sm:text-3xl font-poppins font-semibold text-gray-300 mb-6 h-10"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.55 }}
+            className="flex items-center gap-2 mb-7 mt-4"
           >
-            <span className="gradient-text">{typed}</span>
-            <span className="text-violet-400 animate-blink">|</span>
+            <span className="h-px w-6 bg-teal-500/40 flex-shrink-0" />
+            <span className="text-teal-400 font-semibold text-base sm:text-lg">{typed}</span>
+            <span className="text-teal-400 animate-blink">|</span>
           </motion.div>
 
-          {/* Tagline */}
+          {/* Human copy — written from scratch, no resume language */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45 }}
-            className="text-base sm:text-lg text-gray-400 leading-relaxed mb-8 max-w-lg"
+            transition={{ delay: 0.68, duration: 0.55 }}
+            className="text-[1rem] text-slate-400 leading-[1.9] mb-9 max-w-[455px]"
           >
-            {personalInfo.bio.slice(0, 160)}…
+            I build backend systems that hold up when it matters —{' '}
+            <span className="text-slate-200 font-medium">under load, on launch day, and after six months of feature requests.</span>
+            {' '}If your API is slow or your services are fragile, that's exactly the kind of problem I enjoy solving.
           </motion.p>
 
-          {/* CTAs */}
+          {/* CTA buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.55 }}
-            className="flex flex-wrap gap-4 mb-10"
+            transition={{ delay: 0.8, duration: 0.5 }}
+            className="flex flex-wrap gap-3 mb-10"
           >
+            {/* Primary — dark text on teal for max contrast */}
             <motion.a
               href="#contact"
-              whileHover={{ scale: 1.04 }}
+              whileHover={{ scale: 1.04, boxShadow: '0 0 38px rgba(45,212,191,0.45)' }}
               whileTap={{ scale: 0.97 }}
-              className="group inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-violet-600 to-blue-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-glow-v transition-all duration-300"
+              className="group inline-flex items-center gap-2 px-7 py-3.5 bg-teal-400 text-[#030d1e] font-bold rounded-xl text-[0.93rem] transition-all duration-300"
             >
-              Hire Me
-              <HiArrowRight className="group-hover:translate-x-1 transition-transform" />
+              Work with me
+              <HiArrowRight className="group-hover:translate-x-1 transition-transform duration-200" />
             </motion.a>
 
+            {/* Secondary */}
             <motion.a
               href="#projects"
-              whileHover={{ scale: 1.04 }}
+              whileHover={{ scale: 1.04, borderColor: 'rgba(45,212,191,0.35)' }}
               whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/5 text-white font-semibold rounded-xl border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+              className="inline-flex items-center gap-2 px-7 py-3.5 text-slate-200 font-semibold rounded-xl border border-white/[0.09] hover:bg-teal-500/5 text-[0.93rem] transition-all duration-300"
             >
-              View Projects
+              See the work
             </motion.a>
 
+            {/* Tertiary */}
             <motion.a
               href={personalInfo.resumeUrl}
               download
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center gap-2 px-7 py-3.5 text-gray-300 font-semibold rounded-xl border border-white/10 hover:border-violet-500/50 hover:text-violet-400 transition-all duration-300"
+              className="inline-flex items-center gap-2 px-5 py-3.5 text-slate-500 font-medium rounded-xl border border-white/[0.06] hover:text-teal-300 hover:border-teal-500/20 text-sm transition-all duration-300"
             >
-              <HiDownload />
+              <HiDownload size={15} />
               Resume
             </motion.a>
           </motion.div>
 
           {/* Socials */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.65 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.95 }}
             className="flex items-center gap-4"
           >
-            <span className="text-xs text-gray-500 uppercase tracking-widest">Find me on</span>
+            <span className="text-[9px] text-slate-700 uppercase tracking-[0.22em]">Also on</span>
             {[
               { href: personalInfo.github, Icon: FaGithub, label: 'GitHub' },
               { href: personalInfo.linkedin, Icon: FaLinkedin, label: 'LinkedIn' },
@@ -155,119 +221,102 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                whileHover={{ scale: 1.15, y: -2 }}
-                whileTap={{ scale: 0.9 }}
-                className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-violet-500/20 hover:border-violet-500/50 transition-all"
+                whileHover={{ scale: 1.18, y: -3 }}
+                whileTap={{ scale: 0.92 }}
+                className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.07] flex items-center justify-center text-slate-500 hover:text-teal-400 hover:border-teal-500/30 transition-all duration-200"
               >
-                <Icon size={18} />
+                <Icon size={17} />
               </motion.a>
             ))}
           </motion.div>
         </div>
 
-        {/* Right: Avatar */}
+        {/* ── RIGHT: Terminal + stats ── */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.75, x: 50 }}
-          animate={{ opacity: 1, scale: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, type: 'spring', bounce: 0.3 }}
-          className="flex justify-center lg:justify-end"
+          initial={{ opacity: 0, x: 36, scale: 0.96 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          transition={{ duration: 0.9, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col gap-4"
         >
-          <div className="relative">
-            {/* Spinning ring */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
-              className="absolute -inset-3 rounded-full"
-              style={{ background: 'conic-gradient(from 0deg, #7c3aed, #2563eb, transparent, #06b6d4, transparent, #7c3aed)', borderRadius: '50%', padding: 2 }}
-            >
-              <div className="w-full h-full rounded-full bg-[#0a0f1e]" />
-            </motion.div>
-
-            {/* Profile circle */}
-            <motion.div
-              animate={{ y: [0, -14, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-              className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-violet-500/20"
-              style={{ background: 'linear-gradient(135deg, rgba(124,58,237,0.3), rgba(37,99,235,0.3))' }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-violet-600/30 via-blue-600/25 to-cyan-600/20 flex items-center justify-center">
-                <span className="text-white font-poppins font-extrabold opacity-20" style={{ fontSize: '9rem' }}>H</span>
+          {/* Terminal card */}
+          <div
+            className="rounded-2xl overflow-hidden border border-white/[0.07]"
+            style={{ boxShadow: '0 0 0 1px rgba(45,212,191,0.06), 0 30px 60px rgba(0,0,0,0.55), 0 0 80px rgba(13,148,136,0.08)' }}
+          >
+            {/* Title bar */}
+            <div className="flex items-center gap-2 px-5 py-3.5 bg-[#040d1c] border-b border-white/[0.06]">
+              <span className="w-3 h-3 rounded-full bg-red-500/50 hover:bg-red-500/80 transition-colors" />
+              <span className="w-3 h-3 rounded-full bg-yellow-500/50 hover:bg-yellow-500/80 transition-colors" />
+              <span className="w-3 h-3 rounded-full bg-green-500/50 hover:bg-green-500/80 transition-colors" />
+              <div className="flex-1 flex justify-center">
+                <span className="text-[11px] text-slate-600 font-mono">hardatt@api — zsh</span>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f1e]/50 to-transparent" />
-            </motion.div>
+              <div className="flex items-center gap-1.5">
+                <motion.span
+                  animate={{ opacity: [1, 0.4, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="w-1.5 h-1.5 rounded-full bg-teal-400"
+                />
+                <span className="text-[10px] text-teal-400/60 font-mono">live</span>
+              </div>
+            </div>
 
-            {/* Floating badge 1 */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.9 }}
-              className="absolute -left-8 top-1/4 bg-[#1a1f35] border border-white/10 rounded-2xl p-3 shadow-xl"
-            >
-              <motion.div animate={{ y: [0, -4, 0] }} transition={{ duration: 3, repeat: Infinity }}>
-                <p className="text-xs text-gray-400 mb-0.5">Experience</p>
-                <p className="text-white font-semibold font-poppins text-sm">1+ Year</p>
+            {/* Terminal body */}
+            <div className="bg-[#050e1c] px-5 py-5 font-mono text-[0.8rem] leading-relaxed space-y-1 min-h-[230px]">
+              {TERM.map(line => (
+                <AnimatePresence key={line.id}>
+                  {shown.includes(line.id) && (
+                    <motion.div
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.22, ease: 'easeOut' }}
+                    >
+                      {line.jsx}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              ))}
+
+              {/* Blinking cursor while lines still loading */}
+              {shown.length < TERM.length && (
+                <motion.span
+                  animate={{ opacity: [1, 0, 1] }}
+                  transition={{ duration: 0.9, repeat: Infinity }}
+                  className="inline-block w-[7px] h-[14px] bg-teal-400 align-middle"
+                />
+              )}
+            </div>
+          </div>
+
+          {/* Stats row */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {personalInfo.stats.map((s, i) => (
+              <motion.div
+                key={s.label}
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.5 + i * 0.1 }}
+                whileHover={{ scale: 1.05, borderColor: 'rgba(45,212,191,0.28)' }}
+                className="text-center p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.06] transition-all duration-300 cursor-default"
+              >
+                <p className="text-xl sm:text-2xl font-poppins font-bold gradient-text">{s.value}</p>
+                <p className="text-[10px] text-slate-600 mt-0.5 leading-tight">{s.label}</p>
               </motion.div>
-            </motion.div>
-
-            {/* Floating badge 2 */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1.1 }}
-              className="absolute -right-8 bottom-1/4 bg-[#1a1f35] border border-white/10 rounded-2xl p-3 shadow-xl"
-            >
-              <motion.div animate={{ y: [0, -4, 0] }} transition={{ duration: 3, repeat: Infinity, delay: 1 }}>
-                <p className="text-xs text-gray-400 mb-0.5">Projects Built</p>
-                <p className="text-white font-semibold font-poppins text-sm">6+ 🚀</p>
-              </motion.div>
-            </motion.div>
-
-            {/* Open to work tag */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.3 }}
-              className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-violet-600 to-blue-600 text-white text-xs font-semibold px-4 py-2 rounded-full shadow-glow-v whitespace-nowrap"
-            >
-              Open to Work ✨
-            </motion.div>
+            ))}
           </div>
         </motion.div>
       </div>
-
-      {/* Stats row */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.9 }}
-        className="relative z-10 w-full max-w-4xl mx-auto px-4 pb-10"
-      >
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {personalInfo.stats.map((s, i) => (
-            <motion.div
-              key={s.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 + i * 0.1 }}
-              className="text-center p-4 rounded-2xl bg-white/4 border border-white/8 backdrop-blur-sm"
-            >
-              <p className="text-2xl sm:text-3xl font-poppins font-bold gradient-text">{s.value}</p>
-              <p className="text-xs text-gray-400 mt-1">{s.label}</p>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
 
       {/* Scroll hint */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.6 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-gray-500"
+        transition={{ delay: 2.2 }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-slate-700"
       >
-        <span className="text-xs uppercase tracking-widest">Scroll</span>
-        <motion.div animate={{ y: [0, 7, 0] }} transition={{ duration: 1.4, repeat: Infinity }}>
-          <HiChevronDown size={20} />
+        <span className="text-[9px] uppercase tracking-[0.24em]">Scroll</span>
+        <motion.div animate={{ y: [0, 7, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}>
+          <HiChevronDown size={17} />
         </motion.div>
       </motion.div>
     </section>

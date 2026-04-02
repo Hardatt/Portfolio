@@ -47,7 +47,7 @@ export default function Contact() {
     }
   }
 
-  const inputCls = `w-full px-4 py-3 rounded-xl border text-sm outline-none transition-all duration-200 font-inter focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 ${
+  const inputCls = `w-full px-4 py-3 rounded-xl border text-sm outline-none transition-all duration-200 font-inter focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 ${
     isDark ? 'bg-white border-white/20 text-gray-900 placeholder-gray-400' : 'bg-white border-gray-200 text-gray-900 placeholder-gray-400'
   }`
 
@@ -63,12 +63,12 @@ export default function Contact() {
   ]
 
   return (
-    <section id="contact" className={`section-pad relative overflow-hidden ${isDark ? 'bg-[#0d1326]' : 'bg-white'}`}>
-      <div className="absolute top-0 right-0 w-96 h-96 bg-violet-600/8 rounded-full blur-[130px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-600/5 rounded-full blur-[100px] pointer-events-none" />
+    <section id="contact" className={`section-pad relative overflow-hidden ${isDark ? 'bg-[#071525]' : 'bg-white'}`}>
+      <div className="absolute top-0 right-0 w-96 h-96 bg-teal-600/8 rounded-full blur-[130px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-sky-600/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle badge="Get In Touch" title="Let's Work" highlight="Together" subtitle="Open to freelance projects and full-time opportunities. Let's build something amazing." />
+        <SectionTitle badge="Get In Touch" title="Let's Work" highlight="Together" subtitle="Working on something interesting? My inbox is open. I reply fast." />
 
         <div className="grid lg:grid-cols-5 gap-10 lg:gap-14">
           {/* Left info */}
@@ -94,11 +94,11 @@ export default function Contact() {
                   href={href}
                   whileHover={{ x: 4 }}
                   className={`flex items-center gap-4 p-4 rounded-xl border transition-all group ${
-                    isDark ? 'border-white/8 bg-white/3 hover:border-violet-500/30 hover:bg-violet-500/5' : 'border-gray-100 bg-gray-50 hover:border-violet-200 hover:bg-violet-50/50'
+                    isDark ? 'border-white/[0.07] bg-[#0a1a2e] hover:border-teal-500/30 hover:bg-teal-500/5' : 'border-gray-100 bg-gray-50 hover:border-teal-200 hover:bg-teal-50/50'
                   }`}
                 >
-                  <div className="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center">
-                    <Icon size={18} className="text-violet-500" />
+                  <div className="w-10 h-10 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center">
+                    <Icon size={18} className="text-teal-400" />
                   </div>
                   <div>
                     <p className={`text-xs uppercase tracking-wide mb-0.5 ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>{label}</p>
@@ -122,7 +122,7 @@ export default function Contact() {
                     whileHover={{ scale: 1.12, y: -2 }}
                     whileTap={{ scale: 0.9 }}
                     className={`w-11 h-11 rounded-xl border flex items-center justify-center transition-all ${
-                      isDark ? 'border-white/10 text-gray-400 hover:text-white hover:border-violet-500/50 hover:bg-violet-500/10' : 'border-gray-200 text-gray-500 hover:text-gray-900 hover:border-violet-300 hover:bg-violet-50'
+                      isDark ? 'border-white/10 text-gray-400 hover:text-teal-400 hover:border-teal-500/35 hover:bg-teal-500/10' : 'border-gray-200 text-gray-500 hover:text-gray-900 hover:border-teal-300 hover:bg-teal-50'
                     }`}
                   >
                     <Icon size={18} />
@@ -140,7 +140,7 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="lg:col-span-3"
           >
-            <div className={`p-7 rounded-3xl border ${isDark ? 'bg-[#111827] border-white/8' : 'bg-gray-50 border-gray-200'}`}>
+            <div className={`p-7 rounded-3xl border ${isDark ? 'bg-[#0a1a2e] border-white/[0.07]' : 'bg-gray-50 border-gray-200'}`}>
               <AnimatePresence mode="wait">
                 {sent ? (
                   <motion.div
@@ -214,11 +214,11 @@ export default function Contact() {
                       disabled={sending}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.97 }}
-                      className="w-full py-3.5 bg-gradient-to-r from-violet-600 to-blue-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-glow-v transition-all flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                      className="w-full py-3.5 bg-teal-400 text-[#030d1e] font-bold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
                     >
                       {sending ? (
                         <>
-                          <motion.div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full" animate={{ rotate: 360 }} transition={{ duration: 0.8, repeat: Infinity, ease: 'linear' }} />
+                          <motion.div className="w-4 h-4 border-2 border-[#030d1e]/30 border-t-[#030d1e] rounded-full" animate={{ rotate: 360 }} transition={{ duration: 0.8, repeat: Infinity, ease: 'linear' }} />
                           Sending...
                         </>
                       ) : (

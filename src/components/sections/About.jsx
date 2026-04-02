@@ -18,12 +18,17 @@ export default function About() {
   const isDark = theme === 'dark'
 
   return (
-    <section id="about" className={`section-pad relative overflow-hidden ${isDark ? 'bg-[#0d1326]' : 'bg-white'}`}>
-      <div className="absolute top-0 right-0 w-96 h-96 bg-violet-600/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-600/5 rounded-full blur-[80px] pointer-events-none" />
+    <section id="about" className={`section-pad relative overflow-hidden ${isDark ? 'bg-[#071525]' : 'bg-white'}`}>
+      <div className="absolute top-0 right-0 w-96 h-96 bg-teal-600/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-sky-600/5 rounded-full blur-[80px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle badge="About Me" title="Crafting" highlight="Digital Experiences" subtitle="Passionate developer with a love for clean code and creative solutions." />
+        <SectionTitle
+          badge="About Me"
+          title="Crafting"
+          highlight="Digital Experiences"
+          subtitle="Backend-first. I care more about what happens after you hit send than what the button looks like."
+        />
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start" ref={ref}>
           {/* Left */}
@@ -47,7 +52,7 @@ export default function About() {
                   transition={{ delay: 0.15 + i * 0.06 }}
                   className={`flex items-center gap-2 text-sm ${isDark ? 'text-gray-300' : 'text-gray-600'}`}
                 >
-                  <HiCheckCircle className="text-violet-500 flex-shrink-0" size={17} />
+                  <HiCheckCircle className="text-teal-500 flex-shrink-0" size={17} />
                   {h}
                 </motion.div>
               ))}
@@ -58,7 +63,7 @@ export default function About() {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.5 }}
-              className={`grid grid-cols-2 gap-4 p-5 rounded-2xl mb-8 border ${isDark ? 'bg-white/4 border-white/8' : 'bg-gray-50 border-gray-100'}`}
+              className={`grid grid-cols-2 gap-4 p-5 rounded-2xl mb-8 border ${isDark ? 'bg-[#0a1a2e] border-white/[0.07]' : 'bg-gray-50 border-gray-100'}`}
             >
               {[
                 { label: 'Name', value: personalInfo.name },
@@ -78,7 +83,7 @@ export default function About() {
               download
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-violet-600 to-blue-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-glow-v transition-all"
+              className="inline-flex items-center gap-3 px-6 py-3 bg-teal-400 text-[#030d1e] font-bold rounded-xl shadow-lg transition-all"
             >
               <HiDownload size={20} />
               Download Resume
@@ -121,14 +126,14 @@ function SkillBar({ skill, delay, inView, isDark }) {
     >
       <div className="flex justify-between mb-1.5">
         <span className={`text-sm font-medium ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>{skill.name}</span>
-        <span className="text-xs font-semibold text-violet-500">{skill.level}%</span>
+        <span className="text-xs font-semibold text-teal-500">{skill.level}%</span>
       </div>
       <div className={`h-2 rounded-full overflow-hidden ${isDark ? 'bg-white/5' : 'bg-gray-100'}`}>
         <motion.div
           initial={{ width: 0 }}
           animate={inView ? { width: `${skill.level}%` } : {}}
           transition={{ duration: 1.3, delay: delay + 0.25, ease: [0.4, 0, 0.2, 1] }}
-          className="h-full rounded-full bg-gradient-to-r from-violet-600 to-blue-500 relative"
+          className="h-full rounded-full bg-gradient-to-r from-teal-500 to-sky-500 relative"
         >
           <span className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white shadow-sm" />
         </motion.div>

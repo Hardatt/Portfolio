@@ -42,15 +42,15 @@ export default function Navbar() {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
             ? isDark
-              ? 'bg-[#0a0f1e]/90 backdrop-blur-xl border-b border-white/5 shadow-sm'
-              : 'bg-white/85 backdrop-blur-xl border-b border-gray-200/60 shadow-sm'
+              ? 'bg-[#030d1e]/95 backdrop-blur-xl border-b border-white/[0.06] shadow-sm'
+              : 'bg-white/90 backdrop-blur-xl border-b border-gray-200/60 shadow-sm'
             : 'bg-transparent'
         }`}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <motion.a href="#hero" whileHover={{ scale: 1.03 }} className="flex items-center gap-2 group">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-600 to-blue-600 flex items-center justify-center shadow-glow-v group-hover:animate-glow">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-teal-500 to-sky-500 flex items-center justify-center">
               <span className="text-white font-poppins font-bold text-lg">H</span>
             </div>
             <span className={`font-poppins font-bold text-lg hidden sm:block ${isDark ? 'text-white' : 'text-gray-900'}`}>
@@ -68,16 +68,16 @@ export default function Navbar() {
                   href={href}
                   className={`relative px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
                     isActive
-                      ? 'text-violet-600 dark:text-violet-400'
+                      ? 'text-teal-400'
                       : isDark
-                        ? 'text-gray-400 hover:text-white'
+                        ? 'text-gray-400 hover:text-teal-300'
                         : 'text-gray-600 hover:text-gray-900'
                   }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="pill"
-                      className={`absolute inset-0 rounded-lg ${isDark ? 'bg-violet-500/10' : 'bg-violet-50'}`}
+                      className={`absolute inset-0 rounded-lg ${isDark ? 'bg-teal-500/10' : 'bg-teal-50'}`}
                       transition={{ type: 'spring', bounce: 0.2, duration: 0.4 }}
                     />
                   )}
@@ -114,7 +114,7 @@ export default function Navbar() {
               href="#contact"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className="hidden md:flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-violet-600 to-blue-600 text-white text-sm font-semibold rounded-xl hover:shadow-glow-v transition-all duration-300"
+              className="hidden md:flex items-center gap-2 px-4 py-2 bg-teal-400 text-[#030d1e] text-sm font-bold rounded-xl transition-all duration-300"
             >
               Hire Me
             </motion.a>
@@ -140,7 +140,7 @@ export default function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
             className={`fixed top-16 left-0 right-0 z-40 border-b md:hidden overflow-hidden ${
-              isDark ? 'bg-[#0a0f1e]/98 backdrop-blur-xl border-white/5' : 'bg-white/95 backdrop-blur-xl border-gray-200'
+              isDark ? 'bg-[#030d1e]/98 backdrop-blur-xl border-white/[0.06]' : 'bg-white/95 backdrop-blur-xl border-gray-200'
             }`}
           >
             <div className="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-1">
@@ -154,7 +154,7 @@ export default function Navbar() {
                   transition={{ delay: i * 0.04 }}
                   className={`px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                     active === href.slice(1)
-                      ? isDark ? 'bg-violet-500/10 text-violet-400' : 'bg-violet-50 text-violet-600'
+                      ? isDark ? 'bg-teal-500/10 text-teal-400' : 'bg-teal-50 text-teal-600'
                       : isDark ? 'text-gray-300 hover:bg-white/5' : 'text-gray-700 hover:bg-gray-50'
                   }`}
                 >
@@ -167,7 +167,7 @@ export default function Navbar() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: links.length * 0.04 }}
-                className="mt-2 px-4 py-3 rounded-xl text-sm font-semibold text-center bg-gradient-to-r from-violet-600 to-blue-600 text-white"
+                className="mt-2 px-4 py-3 rounded-xl text-sm font-bold text-center bg-teal-400 text-[#030d1e]"
               >
                 Hire Me
               </motion.a>

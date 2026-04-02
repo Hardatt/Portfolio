@@ -8,16 +8,16 @@ export default function Services() {
   const isDark = theme === 'dark'
 
   return (
-    <section id="services" className={`section-pad relative overflow-hidden ${isDark ? 'bg-[#0d1326]' : 'bg-white'}`}>
-      <div className="absolute top-1/2 left-0 w-80 h-80 bg-blue-600/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/3 w-64 h-64 bg-violet-600/5 rounded-full blur-[80px] pointer-events-none" />
+    <section id="services" className={`section-pad relative overflow-hidden ${isDark ? 'bg-[#071525]' : 'bg-white'}`}>
+      <div className="absolute top-1/2 left-0 w-80 h-80 bg-teal-600/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/3 w-64 h-64 bg-sky-600/5 rounded-full blur-[80px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
           badge="What I Offer"
           title="Freelancing"
           highlight="Services"
-          subtitle="From MVPs to enterprise solutions — I deliver end-to-end services tailored to your needs."
+          subtitle="Need something built right the first time? Here's how I can help."
         />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -31,14 +31,14 @@ export default function Services() {
               whileHover={{ y: -6 }}
               className={`group relative p-6 rounded-2xl border transition-all duration-300 cursor-default ${
                 s.highlight
-                  ? 'border-violet-500/50 bg-gradient-to-br from-violet-600/10 to-blue-600/10 hover:shadow-glow-v'
+                  ? 'border-teal-500/40 bg-gradient-to-br from-teal-600/10 to-sky-600/10 hover:shadow-lg'
                   : isDark
-                    ? 'border-white/8 bg-[#111827] hover:border-violet-500/30 hover:shadow-lg'
-                    : 'border-gray-200 bg-white hover:border-violet-300 hover:shadow-lg'
+                    ? 'border-white/[0.07] bg-[#0a1a2e] hover:border-teal-500/30 hover:shadow-lg'
+                    : 'border-gray-200 bg-white hover:border-teal-300 hover:shadow-lg'
               }`}
             >
               {s.highlight && (
-                <span className="absolute top-4 right-4 px-2.5 py-1 bg-gradient-to-r from-violet-600 to-blue-600 text-white text-xs font-semibold rounded-full">
+                <span className="absolute top-4 right-4 px-2.5 py-1 bg-teal-400 text-[#030d1e] text-xs font-bold rounded-full">
                   Popular
                 </span>
               )}
@@ -58,14 +58,14 @@ export default function Services() {
               <ul className="space-y-2 mb-6">
                 {s.features.map(f => (
                   <li key={f} className={`flex items-center gap-2 text-sm ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
-                    <span className="w-1.5 h-1.5 rounded-full bg-violet-500 flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-teal-500 flex-shrink-0" />
                     {f}
                   </li>
                 ))}
               </ul>
 
-              <div className={`pt-4 border-t ${isDark ? 'border-white/8' : 'border-gray-100'} flex items-center justify-between`}>
-                <span className={`text-sm font-semibold ${s.highlight ? 'text-violet-400' : isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+              <div className={`pt-4 border-t ${isDark ? 'border-white/[0.07]' : 'border-gray-100'} flex items-center justify-between`}>
+                <span className={`text-sm font-semibold ${s.highlight ? 'text-teal-400' : isDark ? 'text-gray-300' : 'text-gray-700'}`}>
                   {s.price}
                 </span>
                 <motion.a
@@ -74,8 +74,8 @@ export default function Services() {
                   whileTap={{ scale: 0.95 }}
                   className={`px-4 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                     s.highlight
-                      ? 'bg-gradient-to-r from-violet-600 to-blue-600 text-white'
-                      : 'border border-violet-500/40 text-violet-500 hover:bg-violet-500/10'
+                      ? 'bg-teal-400 text-[#030d1e] font-bold'
+                      : 'border border-teal-500/40 text-teal-500 hover:bg-teal-500/10'
                   }`}
                 >
                   Get Quote →
@@ -90,7 +90,7 @@ export default function Services() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className={`mt-14 p-8 rounded-3xl border text-center ${isDark ? 'bg-gradient-to-br from-violet-600/10 to-blue-600/10 border-violet-500/20' : 'bg-gradient-to-br from-violet-50 to-blue-50 border-violet-200'}`}
+          className={`mt-14 p-8 rounded-3xl border text-center ${isDark ? 'bg-gradient-to-br from-teal-500/8 to-sky-500/8 border-teal-500/20' : 'bg-gradient-to-br from-teal-50 to-sky-50 border-teal-200'}`}
         >
           <h3 className={`font-poppins font-bold text-2xl mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>Have a custom project in mind?</h3>
           <p className={`mb-6 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Let's discuss your requirements and build something great together.</p>
@@ -98,7 +98,7 @@ export default function Services() {
             href="#contact"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
-            className="inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-violet-600 to-blue-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-glow-v transition-all"
+            className="inline-flex items-center gap-2 px-7 py-3.5 bg-teal-400 text-[#030d1e] font-bold rounded-xl shadow-lg transition-all"
           >
             Let's Talk →
           </motion.a>

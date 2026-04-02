@@ -126,13 +126,13 @@ export default function Projects() {
   const list = filter === 'featured' ? projects.filter(p => p.featured) : projects
 
   return (
-    <section id="projects" className={`section-pad relative overflow-hidden ${isDark ? 'bg-[#0a0f1e]' : 'bg-gray-50'}`}>
+    <section id="projects" className={`section-pad relative overflow-hidden ${isDark ? 'bg-[#030d1e]' : 'bg-gray-50'}`}>
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-violet-600/4 rounded-full blur-[130px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-teal-600/4 rounded-full blur-[130px]" />
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle badge="My Work" title="Featured" highlight="Projects" subtitle="A selection of my recent work — built with performance, UX, and clean architecture in mind." />
+        <SectionTitle badge="My Work" title="Featured" highlight="Projects" subtitle="Things I've shipped. Some open-source, some internal — all built to actually solve a problem." />
 
         {/* Filter */}
         <motion.div
@@ -149,10 +149,10 @@ export default function Projects() {
               whileTap={{ scale: 0.96 }}
               className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
                 filter === f
-                  ? 'bg-gradient-to-r from-violet-600 to-blue-600 text-white shadow-glow-v'
+                  ? 'bg-teal-400 text-[#030d1e] font-bold'
                   : isDark
-                    ? 'bg-white/5 text-gray-400 border border-white/8 hover:border-violet-500/40'
-                    : 'bg-white text-gray-500 border border-gray-200 hover:border-violet-400'
+                    ? 'bg-white/5 text-gray-400 border border-white/[0.07] hover:border-teal-500/40'
+                    : 'bg-white text-gray-500 border border-gray-200 hover:border-teal-400'
               }`}
             >
               {f === 'all' ? 'All Projects' : '⭐ Featured'}
@@ -180,8 +180,8 @@ export default function Projects() {
                   transition={{ duration: 0.28 }}
                   className={`h-full rounded-2xl overflow-hidden border transition-all duration-300 ${
                     isDark
-                      ? 'bg-[#111827] border-white/8 hover:border-violet-500/30 hover:shadow-glow-v/20'
-                      : 'bg-white border-gray-200 hover:border-violet-300 hover:shadow-xl'
+                      ? 'bg-[#0a1a2e] border-white/[0.07] hover:border-teal-500/30 hover:shadow-lg'
+                      : 'bg-white border-gray-200 hover:border-teal-300 hover:shadow-xl'
                   }`}
                 >
                   {/* Card image area */}
@@ -214,7 +214,7 @@ export default function Projects() {
                         >
                           {[
                             { href: p.github, Icon: FaGithub, label: 'Code', cls: 'bg-white text-gray-900 hover:bg-gray-100' },
-                            { href: p.live, Icon: HiExternalLink, label: 'Live', cls: 'bg-gradient-to-r from-violet-600 to-blue-600 text-white' },
+                            { href: p.live, Icon: HiExternalLink, label: 'Live', cls: 'bg-teal-400 text-[#030d1e]' },
                           ].map(({ href, Icon, label, cls }, bi) => (
                             <motion.a
                               key={label}
@@ -236,14 +236,14 @@ export default function Projects() {
 
                   {/* Card body */}
                   <div className="p-5">
-                    <h3 className={`font-poppins font-bold text-lg mb-2 group-hover:text-violet-500 transition-colors ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                    <h3 className={`font-poppins font-bold text-lg mb-2 group-hover:text-teal-400 transition-colors ${isDark ? 'text-white' : 'text-gray-900'}`}>
                       {p.title}
                     </h3>
                     <p className={`text-sm leading-relaxed mb-4 line-clamp-2 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>{p.description}</p>
 
                     <div className="flex flex-wrap gap-2 mb-4">
                       {p.tech.map(t => (
-                        <span key={t} className={`px-2.5 py-1 text-xs font-medium rounded-lg border ${isDark ? 'bg-white/4 text-gray-400 border-white/8' : 'bg-gray-100 text-gray-600 border-gray-200'}`}>
+                        <span key={t} className={`px-2.5 py-1 text-xs font-medium rounded-lg border ${isDark ? 'bg-white/4 text-gray-400 border-white/[0.07]' : 'bg-gray-100 text-gray-600 border-gray-200'}`}>
                           {t}
                         </span>
                       ))}
@@ -256,7 +256,7 @@ export default function Projects() {
                       </a>
                       <span className={isDark ? 'text-gray-700' : 'text-gray-300'}>•</span>
                       <a href={p.live} target="_blank" rel="noopener noreferrer"
-                        className="flex items-center gap-1.5 text-sm text-violet-500 hover:text-violet-400 font-medium transition-colors">
+                        className="flex items-center gap-1.5 text-sm text-teal-400 hover:text-teal-300 font-medium transition-colors">
                         <HiExternalLink size={14} /> Live Demo
                       </a>
                     </div>
@@ -275,7 +275,7 @@ export default function Projects() {
           className="mt-12 text-center"
         >
           <a href="https://github.com" target="_blank" rel="noopener noreferrer"
-            className={`inline-flex items-center gap-2 px-6 py-3 border-2 border-violet-500/30 text-violet-500 font-semibold rounded-xl hover:border-violet-500 transition-all duration-300 ${isDark ? 'hover:bg-violet-500/10' : 'hover:bg-violet-50'}`}>
+            className={`inline-flex items-center gap-2 px-6 py-3 border-2 border-teal-500/30 text-teal-400 font-semibold rounded-xl hover:border-teal-400 transition-all duration-300 ${isDark ? 'hover:bg-teal-500/10' : 'hover:bg-teal-50'}`}>
             <FaGithub size={18} /> View All on GitHub
           </a>
         </motion.div>
