@@ -9,7 +9,7 @@ export const personalInfo = {
   location: 'Bangalore, India',
   github: 'https://github.com/Hardatt',
   linkedin: 'https://linkedin.com/in/hardatt-singh',
-  resumeUrl: '/resume.pdf',
+  resumeUrl: '/resume_v2.pdf',
   bio: "I'm a Full Stack Developer with expertise in building scalable backend systems, RESTful APIs, and data-driven applications using Node.js, Express.js, MySQL, and MongoDB. Proficient in microservices, JWT authentication, workflow automation, and event-driven architecture.",
   bioExtra: 'Improved system throughput by 25–30% and automated key business processes to deliver enterprise-grade backend solutions. Open to freelance projects and full-time opportunities.',
   stats: [
